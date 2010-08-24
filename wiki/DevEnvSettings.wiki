@@ -1,0 +1,7 @@
+#summary 开发环境设定
+
+= 下载eclipse最新版本 =
+   [http://www.eclipse.org/downloads/ 下载Eclipse IDE for Java EE Developers]
+
+= 安装Google App Engine Plugin for Eclipse =
+   [http://code.google.com/eclipse/docs/install-eclipse-3.6.html Google Plugin for Eclipse 3.6]
