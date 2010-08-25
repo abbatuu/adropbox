@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Dropbox Proxy UI</title>
+<script src="http://www.google.com/jsapi?key=ABQIAAAA22bMRexJLGd41HXQXCciqxSgqz5hjS3kJqxDsZTOB6q-HIgoVxRFuATh4z7rWd1fJMGKRjpCFjMD1g"
+  type="text/javascript"
+></script>
+<script language="Javascript" type="text/javascript">
+    //<![CDATA[
+
+    google.load("jquery", "1.4.2");
+
+    function OnLoad() {
+    	
+    }
+    google.setOnLoadCallback(OnLoad);
+
+    //]]>
+</script>
+</head>
+<body>
+<h1>Dropbox Proxy UI</h1>
+<h2>Login to Dropbox</h2>
+<form id="loginForm" name="loginForm" action="/account.do?action=login" method="post" enctype="application/x-www-form-urlencoded">
+<table>
+  <tr>
+    <th>Email</th>
+    <td><input id="email" name="email" type="text" value="26614863@qq.com"></td>
+  </tr>
+  <tr>
+    <th>Password</th>
+    <td><input id="password" name="password" type="password" value="adrop-box-test"></td>
+  </tr>
+  <tr>
+    <th>&nbsp;</th>
+    <td><button type="submit">Login</button></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
