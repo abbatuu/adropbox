@@ -1,9 +1,10 @@
 package com.adrop.dropbox.client;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,7 +47,7 @@ public class Adropbox {
 													DropboxConstants.AUTHORIZATION_URL);
 	}
 
-	public void getMetadata() {
+	public void getMetadata(boolean inSandbox, String hash, String path) throws DropboxException {
 
 	}
 
@@ -78,7 +79,7 @@ public class Adropbox {
 
 	}
 
-	public boolean login(String email, String password) {
+	public boolean login(String email, String password) throws DropboxException {
 		AccessToken accessToken = null;
 
 		try {
@@ -87,10 +88,13 @@ public class Adropbox {
 			if (accessToken == null) {
 				String tokenUrl = Utilities.getTokenUrl(email, password);
 				URL tokenURL = new URL(tokenUrl);
-				URLConnection tokenURLConn = tokenURL.openConnection();
+				HttpURLConnection tokenURLConn = (HttpURLConnection) tokenURL.openConnection();
 				oauthConsumer.sign(tokenURLConn);
 				tokenURLConn.connect();
-				JSONObject json = Utilities.readResponseAsJSONObject(tokenURLConn);
+				int resCode = tokenURLConn.getResponseCode();
+				// TODO 
+				InputStream input = tokenURLConn.getInputStream();
+				JSONObject json = Utilities.readAsJSONObject(input);
 				accessToken = new AccessToken(	email,
 												JSONUtilities.stringValue(json, "token"),
 												JSONUtilities.stringValue(json, "secret"));
@@ -117,19 +121,21 @@ public class Adropbox {
 		return false;
 	}
 
-	public Account getAccountInfo(String email, String password) {
+	public Account getAccountInfo(String email, String password) throws DropboxException {
 
 		try {
 
 			String accountInfoUrl = DropboxConstants.URL_ACCOUNT_INFO;
 			URL url = new URL(accountInfoUrl);
-			URLConnection urlConn = url.openConnection();
+			HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
 			oauthConsumer.sign(urlConn);
 			urlConn.connect();
-			JSONObject accountJson = Utilities.readResponseAsJSONObject(urlConn);
+			int resCode = urlConn.getResponseCode();
+			// TODO 
+			InputStream input = urlConn.getInputStream();
+			JSONObject accountJson = Utilities.readAsJSONObject(input);
 
-			Account account = new Account(accountJson);
-			return account;
+			return new Account(accountJson);
 
 		} catch (MalformedURLException e) {
 			logger.log(Level.WARNING, null, e);

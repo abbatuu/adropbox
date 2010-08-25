@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RedirectModel implements Model {
+public class RedirectModel extends AbstractModel {
 
 	private String target;
 

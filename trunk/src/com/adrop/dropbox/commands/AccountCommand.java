@@ -1,9 +1,11 @@
 package com.adrop.dropbox.commands;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.adrop.dropbox.client.Account;
 import com.adrop.dropbox.client.Adropbox;
+import com.adrop.dropbox.client.DropboxException;
 import com.adrop.dropbox.common.Context;
 import com.adrop.dropbox.common.DispatchCommand;
 import com.adrop.dropbox.common.ForwardModel;
@@ -20,9 +22,13 @@ public class AccountCommand extends DispatchCommand {
 		Adropbox client = new Adropbox();
 		Account account = null;
 		ForwardModel model = new ForwardModel("/accountInfo.jsp");
-		if (client.login(email, password)) {
-			account = client.getAccountInfo(email, password);
-			model.addRequestAttribute("account", account);
+		try {
+			if (client.login(email, password)) {
+				account = client.getAccountInfo(email, password);
+				model.addRequestAttribute("account", account);
+			}
+		} catch (DropboxException e) {
+			logger.log(Level.WARNING, null, e);
 		}
 		return model;
 	}

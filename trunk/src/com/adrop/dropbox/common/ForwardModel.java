@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ForwardModel implements Model {
+public class ForwardModel extends AbstractModel {
 
 	private Map<String, Object> modelData = new HashMap<String, Object>();
 	private String target;
