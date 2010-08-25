@@ -8,7 +8,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AjaxModel implements Model {
+public class AjaxModel extends AbstractModel {
 
 	private ByteArrayOutputStream output = new ByteArrayOutputStream();
 

@@ -17,4 +17,6 @@ public final class DropboxConstants {
 	public static final String URL_TOKEN_PATTERN = HTTP_SCHEMA + "://" + DROPBOX_SERVER + "/" + DROPBOX_API_VERSION + "/token?email={0}&password={1}";
 
 	public static final String URL_ACCOUNT_INFO = HTTP_SCHEMA + "://" + DROPBOX_SERVER + "/" + DROPBOX_API_VERSION + "/account/info";
+	public static final String URL_METADATA = HTTP_SCHEMA + "://" + DROPBOX_SERVER + "/" + DROPBOX_API_VERSION + "/account/metadata/{0}/{1}";
+
 }

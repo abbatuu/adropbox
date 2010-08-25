@@ -2,8 +2,8 @@ package com.adrop.dropbox;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URLConnection;
 import java.text.MessageFormat;
 import java.util.logging.Logger;
 
@@ -15,16 +15,16 @@ public class Utilities {
 
 	private static final Logger logger = Logger.getLogger(Utilities.class.getName());
 
-	public static JSONObject readResponseAsJSONObject(URLConnection tokenURLConn) throws IOException, ParseException {
-		StringBuilder buf = readResponseAsString(tokenURLConn);
+	public static JSONObject readAsJSONObject(InputStream inputStream) throws IOException, ParseException {
+		StringBuilder buf = readAsStringBuilder(inputStream);
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(buf.toString());
 		return json;
 	}
 
-	private static StringBuilder readResponseAsString(URLConnection tokenURLConn) throws IOException {
+	private static StringBuilder readAsStringBuilder(InputStream inputStream) throws IOException {
 		StringBuilder buf = new StringBuilder();
-		BufferedReader tokenReader = new BufferedReader(new InputStreamReader(tokenURLConn.getInputStream()));
+		BufferedReader tokenReader = new BufferedReader(new InputStreamReader(inputStream));
 		String tokenLine = null;
 		while ((tokenLine = tokenReader.readLine()) != null) {
 			buf.append(tokenLine);
