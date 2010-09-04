@@ -1,4 +1,4 @@
-package com.adrop.dropbox.common;
+package com.adrop.dropbox.common.model;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 public class ForwardModel extends AbstractModel {
 

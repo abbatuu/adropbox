@@ -1,6 +1,10 @@
-package com.adrop.dropbox.common;
+package com.adrop.dropbox.common.command;
 
 import java.lang.reflect.Method;
+
+import com.adrop.dropbox.common.Command;
+import com.adrop.dropbox.common.Context;
+import com.adrop.dropbox.common.Model;
 
 public class DispatchCommand implements Command {
 
