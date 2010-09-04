@@ -1,4 +1,6 @@
-package com.adrop.dropbox.common;
+package com.adrop.dropbox.common.model;
+
+import com.adrop.dropbox.common.Model;
 
 public abstract class AbstractModel implements Model {
 

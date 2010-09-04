@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mapping package="com.adrop.dropbox.commands">
+	<get path="/account/info">
+		<to>
+			<action class="AccountCommand" method="getInfo"/>
+		</to>
+	</get>
+	<post path="/account/login">
+		<to>
+			<action class="AccountCommand" method="login"/>
+		</to>
+	</post>
+	<get path="/account/logout">
+		<to>
+			<action class="AccountCommand" method="logout"/>
+		</to>
+	</get>
+</mapping>
