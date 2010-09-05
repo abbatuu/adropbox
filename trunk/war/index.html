@@ -24,10 +24,27 @@
 
     //]]>
 </script>
+
+<style type="text/css">
+body {
+  text-align: center;
+}
+#box {
+  width: 20em;
+  margin: 15em auto 0 auto;
+  height: 200px;
+  background-color: #EFF6FF;
+  padding: 25px;
+}
+#box form {
+  width: 100%;
+}
+</style>
+
 </head>
 <body>
-<h1>Dropbox Proxy UI</h1>
-<h2>Login to Dropbox</h2>
+
+<div id="box">
 <form id="loginForm" name="loginForm" action="/account/login" method="post" enctype="application/x-www-form-urlencoded">
 <table>
   <tr>
@@ -44,5 +61,7 @@
   </tr>
 </table>
 </form>
+</div>
+
 </body>
 </html>

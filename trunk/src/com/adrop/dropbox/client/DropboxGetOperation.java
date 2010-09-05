@@ -52,6 +52,20 @@ public class DropboxGetOperation {
 			prepareForConnecting();
 			connect();
 			processResponse();
+			int respCode = urlConn.getResponseCode();
+			if (respCode == HttpURLConnection.HTTP_OK) {
+				// do nothing
+			} else if (respCode == -1) { // not valid http response
+				throw new DropboxException("Not valid http response.");
+			} else {
+				StringBuilder buf = new StringBuilder();
+				try {
+					buf.append(JSONUtilities.readAsStringBuilder(input));
+				} catch (IOException e) {
+					// ignore it
+				}
+				throw new DropboxException(respCode, urlConn.getResponseMessage() + "[" + buf.toString() + "]");
+			}
 		} catch (OAuthMessageSignerException e) {
 			throw new DropboxException(e);
 		} catch (OAuthExpectationFailedException e) {
@@ -65,7 +79,8 @@ public class DropboxGetOperation {
 
 	public JSONObject readResponseAsJSONObject() throws DropboxException {
 		try {
-			return JSONUtilities.readAsJSONObject(input);
+			JSONObject jsonResult = JSONUtilities.readAsJSONObject(input);
+			return jsonResult;
 		} catch (IOException e) {
 			throw new DropboxException(e);
 		} catch (ParseException e) {
@@ -110,13 +125,12 @@ public class DropboxGetOperation {
 	 */
 	protected void prepareParameters() {
 		if (parameters == null || parameters.isEmpty()) return;
-		StringBuilder buf = new StringBuilder();
-		boolean first = false;
+		StringBuilder buf = new StringBuilder("?");
+		boolean first = true;
 		for (Iterator<Map.Entry<String, String>> iter = parameters.entrySet().iterator(); iter.hasNext();) {
 			Map.Entry<String, String> entry = iter.next();
 			String name = entry.getKey();
 			String value = entry.getValue();
-			if (!first) first = true;
 			try {
 				if (!first) buf.append("&");
 				buf.append(URLEncoder.encode(name, "UTF-8"))
@@ -125,6 +139,7 @@ public class DropboxGetOperation {
 			} catch (UnsupportedEncodingException e) {
 				// ignore it
 			}
+			if (first) first = false;
 		}
 		this.requestUrl.append(buf);
 	}

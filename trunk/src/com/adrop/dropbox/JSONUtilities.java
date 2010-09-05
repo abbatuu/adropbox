@@ -68,7 +68,7 @@ public final class JSONUtilities {
 		return json;
 	}
 
-	private static StringBuilder readAsStringBuilder(InputStream inputStream) throws IOException {
+	public static StringBuilder readAsStringBuilder(InputStream inputStream) throws IOException {
 		StringBuilder buf = new StringBuilder();
 		BufferedReader tokenReader = new BufferedReader(new InputStreamReader(inputStream));
 		String tokenLine = null;
