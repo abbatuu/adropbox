@@ -33,6 +33,7 @@ public class AccountCommand extends DispatchCommand {
 			ctx.setValueToSession(DropboxConstants.SESSION_LEY_TOKEN, token);
 		} catch (DropboxException e) {
 			logger.log(Level.WARNING, null, e);
+			// TODO return a error page
 		}
 		return model;
 	}

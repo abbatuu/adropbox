@@ -112,8 +112,6 @@ public class ActionFilter implements Filter {
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp, Map<String, Mapping> mappings) throws IOException,
 																												ServletException {
 		String servletPath = req.getServletPath();
-		System.out.println("servletPath=" + req.getServletPath());
-		System.out.println("RequestURI=" + req.getRequestURI());
 		try {
 			if (mappings.containsKey(servletPath)) {
 				Context ctx = createContext(req, resp);
@@ -147,7 +145,7 @@ public class ActionFilter implements Filter {
 	 * @param el
 	 * @param mappings
 	 */
-	public void parseMethodElement(String commandPackage, Element el, Map<String, Mapping> mappings) {
+	private void parseMethodElement(String commandPackage, Element el, Map<String, Mapping> mappings) {
 		String reqPath = getAttribute(el, KEY_PATH);
 		NodeList tos = el.getElementsByTagName(KEY_TO);
 		if (tos.getLength() == 1) {
@@ -164,11 +162,9 @@ public class ActionFilter implements Filter {
 				}
 				// ignore type attribute of the action element
 				mappings.put(reqPath, new ActionMapping(reqPath, className, method));
-				System.out.println(reqPath + ":" + className + "." + method);
 			} else if (actions.getLength() == 0) {
 				String targetPage = getTextContent(to);
 				mappings.put(reqPath, new PageMapping(targetPage, type));
-				System.out.println(reqPath + ":" + targetPage + "," + type);
 			}
 		} else {
 			// Do nothing if no to element

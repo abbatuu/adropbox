@@ -239,11 +239,12 @@ public class Adropbox {
 											JSONUtilities.stringValue(json, "token"),
 											JSONUtilities.stringValue(json, "secret"));
 			ats.save(accessToken);
+			logger.info("Got new access token: " + accessToken.toString());
+		} else {
+			logger.info("Load access token: " + accessToken.toString());
 		}
 		oauthConsumer.setTokenWithSecret(accessToken.getToken(), accessToken.getSecret());
 		authenticated = true;
-
-		logger.info(accessToken.toString());
 
 	}
 

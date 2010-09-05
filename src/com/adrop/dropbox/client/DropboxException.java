@@ -22,13 +22,20 @@ public class DropboxException extends Exception {
 		super(cause);
 	}
 
-	public DropboxException(int errorCode) {
-		super();
+	public DropboxException(int errorCode, String message) {
+		super(message);
 		this.errorCode = errorCode;
 	}
 
 	public int getErrorCode() {
 		return errorCode;
+	}
+
+	public String getMessage() {
+		if (errorCode != -1) {
+			return errorCode + " : " + super.getMessage();
+		}
+		return super.getMessage();
 	}
 
 }
