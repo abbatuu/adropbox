@@ -1,0 +1,1 @@
+www.dropbox.com是一个提供在线存储服务的网站，提供各种平台（Windows、Linux、Mac）的客户端同步工具，使用客户端工具可在dropbox服务器、多台电脑之间同步共享文件，曾经是我使用最多最频繁的在线存储服务网站。不幸的是，自从今年5月开始，在中国大陆再也不能访问，除非借助其他途径，现在客户端工具依然还能使用。dropbox也已经开放了REST API，本项目的目的就是基于dropbox的REST API，在Google App Engine平台上构建一个服务，提供dropbox.com的基本功能，供不能直接访问dropbox.com的人们使用。
